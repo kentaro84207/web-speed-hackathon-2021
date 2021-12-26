@@ -67,15 +67,11 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_PATH, './index.html'),
-      publicPath: '/'
+      publicPath: '/',
     }),
     new CompressionPlugin({
-      filename: "[path][base].br",
-      algorithm: "brotliCompress",
+      algorithm: 'brotliCompress',
       test: /\.(js|css|html|svg)$/,
-      threshold: 10240,
-      minRatio: 0.8,
-      deleteOriginalAssets: true,
     }),
   ],
   resolve: {
