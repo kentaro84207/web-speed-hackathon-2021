@@ -76,7 +76,6 @@ const config = {
     new CompressionPlugin({
       algorithm: 'brotliCompress',
       test: /\.(js|css|html|svg)$/,
-      deleteOriginalAssets: true,
     }),
   ],
   resolve: {
