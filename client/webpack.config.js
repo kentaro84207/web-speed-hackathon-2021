@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const webpack = require('webpack');
 
@@ -67,11 +68,16 @@ const config = {
       NODE_ENV: process.env.NODE_ENV,
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: 'styles/[name].[hash].css',
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_PATH, './index.html'),
       publicPath: '/',
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      include: 'all',
+      fileBlacklist: [/\.js/],
     }),
     new CompressionPlugin({
       algorithm: 'brotliCompress',
