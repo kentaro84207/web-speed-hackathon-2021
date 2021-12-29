@@ -22,10 +22,10 @@ async function fetchBinary(url) {
 async function fetchJSON(url) {
   const result = await fetch(url, {
     method: 'GET',
-    headers: {
-      Accept: 'application/json',
-    },
   });
+  if (!result.ok) {
+    throw new Error(`Failed to fetch(${result.status}): ${result.url}`);
+  }
   return await result.json();
 }
 
