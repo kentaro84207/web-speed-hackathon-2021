@@ -1,6 +1,4 @@
-import React from 'react'
-import { Helmet } from 'react-helmet';
-import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
+import React, { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { AppPage } from '../../components/application/AppPage';
@@ -32,13 +30,11 @@ const AppContainer = () => {
   const handleRequestOpenPostModal = useCallback(() => setModalType('post'), []);
   const handleRequestCloseModal = useCallback(() => setModalType('none'), []);
 
-  if (isLoading) {
-    return (
-      <Helmet>
-        <title>読込中 - CAwitter</title>
-      </Helmet>
-    );
-  }
+  useEffect(() => {
+    if (isLoading) {
+      document.title = '読込中 - CAwitter';
+    }
+  }, [isLoading]);
 
   return (
     <>
