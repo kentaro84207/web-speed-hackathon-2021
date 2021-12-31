@@ -22,6 +22,7 @@ const PostContainer = () => {
   }, [isLoadingPost, post]);
 
   if (post === null) {
+    if (isLoadingPost) return <></>;
     return <NotFoundContainer />;
   }
 
