@@ -17,10 +17,8 @@ const PostContainer = () => {
   const { data: comments, fetchMore } = useInfiniteFetch(`/api/v1/posts/${postId}/comments`, fetchJSON);
 
   useEffect(() => {
-    if (isLoadingPost) {
-      document.title = '読込中 - CAwitter';
-    }
-    document.title = `${post.user.name} さんのつぶやき - CAwitter`;
+    if (isLoadingPost) document.title = '読込中 - CAwitter';
+    if (post) document.title = `${post.user.name} さんのつぶやき - CAwitter`;
   }, [isLoadingPost, post]);
 
   if (post === null) {
